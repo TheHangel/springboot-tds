@@ -15,4 +15,10 @@ class Item {
         return nom.hashCode()
     }
 
+    companion object {
+        fun findByNameFromList(name:String, items:HashSet<Item>):Item?{
+            return items.find { name == it.nom }
+        }
+    }
+
 }
