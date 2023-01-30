@@ -68,18 +68,32 @@ class ItemsController {
     }
 
     @GetMapping("/inc/{nom}")
-    fun incrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
+    fun incrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>, attrs: RedirectAttributes): RedirectView {
         if (nomItem != null) {
             Item.findByNameFromList(nomItem, items)!!.evaluation++
         }
+        addMessage(
+            true,
+            attrs,
+            "Incrémentation",
+            "$nomItem a été incrémenté.",
+            "$nomItem ne peut pas être incrémenté."
+        )
         return RedirectView("/")
     }
 
     @GetMapping("/dec/{nom}")
-    fun decrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
+    fun decrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>, attrs: RedirectAttributes): RedirectView {
         if (nomItem != null) {
             Item.findByNameFromList(nomItem, items)!!.evaluation--
         }
+        addMessage(
+            true,
+            attrs,
+            "Décrémentation",
+            "$nomItem a été décrémenté.",
+            "$nomItem ne peut pas être décrémenté."
+        )
         return RedirectView("/")
     }
 }
