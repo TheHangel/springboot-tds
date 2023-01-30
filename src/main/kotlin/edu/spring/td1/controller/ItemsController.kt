@@ -19,7 +19,7 @@ class ItemsController {
             return elements
         }
 
-    private fun addMessage(resp:Boolean, attrs: RedirectAttributes, title:String, success:String, error:String){
+    private fun showMessage(resp:Boolean, attrs: RedirectAttributes, title:String, success:String, error:String){
         if(resp) {
             attrs.addFlashAttribute("msg",
                 UIMessage.message(title, success))
@@ -38,7 +38,7 @@ class ItemsController {
         val item = Item()
         item.nom = nom
         item.evaluation = 0
-        addMessage(
+        showMessage(
             items.add(item),
             attrs,
             "Ajout",
@@ -72,7 +72,7 @@ class ItemsController {
         if (nomItem != null) {
             Item.findByNameFromList(nomItem, items)!!.evaluation++
         }
-        addMessage(
+        showMessage(
             true,
             attrs,
             "Incrémentation",
@@ -87,7 +87,7 @@ class ItemsController {
         if (nomItem != null) {
             Item.findByNameFromList(nomItem, items)!!.evaluation--
         }
-        addMessage(
+        showMessage(
             true,
             attrs,
             "Décrémentation",
@@ -96,4 +96,18 @@ class ItemsController {
         )
         return RedirectView("/")
     }
+
+    @GetMapping("/del/{nom}")
+    fun supprimerItem(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>, attrs: RedirectAttributes):RedirectView{
+        val itemToRemove = nomItem?.let { Item.findByNameFromList(it, items) }
+        showMessage(
+            items.remove(itemToRemove),
+            attrs,
+            "Suppression",
+            "$nomItem a été supprimé.",
+            "$nomItem ne peut pas être supprimé."
+        )
+        return RedirectView("/")
+    }
+
 }
