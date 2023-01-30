@@ -1,5 +1,6 @@
 package edu.spring.td1.controller
 
+import edu.spring.td1.model.Category
 import edu.spring.td1.model.Item
 import edu.spring.td1.service.UIMessage
 import org.springframework.stereotype.Controller
@@ -7,9 +8,10 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import org.springframework.web.servlet.view.RedirectView
 import java.util.*
+import kotlin.collections.HashSet
 
 @Controller
-@SessionAttributes("items")
+@SessionAttributes("items", "categories")
 class ItemsController {
     @get:ModelAttribute("items")
     val items: Set<Any>
@@ -17,6 +19,14 @@ class ItemsController {
             var elements= HashSet<Item>()
             elements.add(Item().apply { nom = "objet par défaut"; evaluation = 0 })
             return elements
+        }
+
+    @get:ModelAttribute("categories")
+    val categories: Set<Any>
+        get() {
+            var categories= HashSet<Category>()
+            categories.add(Category().apply {  })
+            return categories
         }
 
     private fun showMessage(resp:Boolean, attrs: RedirectAttributes, title:String, success:String, error:String){
