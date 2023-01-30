@@ -25,7 +25,7 @@ class ItemsController {
     val categories: Set<Any>
         get() {
             var categories= HashSet<Category>()
-            categories.add(Category().apply {  })
+            categories = Category.genererListeParDefaut()
             return categories
         }
 
