@@ -1,8 +1,10 @@
 package edu.spring.td1.model
 
+import java.util.HashSet
+
 class Item {
     var nom: String? = null
-    var evaluation : Int? = null
+    var evaluation : Int = 0
 
     override fun equals(o: Any?): Boolean {
         if (this === o) return true
@@ -16,8 +18,8 @@ class Item {
     }
 
     companion object {
-        fun findByNameFromList(name:String, items:HashSet<Item>):Item?{
-            return items.find { name == it.nom }
+        fun findByNameFromList(name:String, items: HashSet<Item?>):Item?{
+            return items.find { name == it!!.nom }
         }
     }
 

@@ -68,25 +68,17 @@ class ItemsController {
     }
 
     @GetMapping("/inc/{nom}")
-    fun incrementer(@RequestParam nom: String?, @PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
-        for (e in items) {
-            if (e != null) {
-                if (e.nom == nomItem ) {
-                    e.evaluation?.plus(1)
-                }
-            }
+    fun incrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
+        if (nomItem != null) {
+            Item.findByNameFromList(nomItem, items)!!.evaluation++
         }
         return RedirectView("/")
     }
 
     @GetMapping("/dec/{nom}")
-    fun decrementer(@RequestParam nom: String?, @PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
-        for (e in items) {
-            if (e != null) {
-                if (e.nom == nomItem ) {
-                    e.evaluation?.minus(1)
-                }
-            }
+    fun decrementer(@PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
+        if (nomItem != null) {
+            Item.findByNameFromList(nomItem, items)!!.evaluation--
         }
         return RedirectView("/")
     }
