@@ -16,6 +16,22 @@
         <p>Pas d'items à afficher.</p>
     {{/items}}
 </ul>
+
+<ul>
+    {{#categories}}
+        <li>{{categoryNom}}</li>
+        <ul>
+            {{#items}}
+                <li>{{nom}} <br>Evalution : {{evaluation}}
+                    <a class="ui circular mini icon button" href="/inc/{{nom}}"><i class="ui plus icon"></i> </a>
+                    <a class="ui circular mini icon button" href="/dec/{{nom}}"><i class="ui minus icon"></i> </a>
+                    <a class="ui circular mini icon button" href="/del/{{nom}}"><i class="trash alternate icon"></i> </a>
+                </li>
+            {{/items}}
+        </ul>
+    {{/categories}}
+</ul>
+
 {{> footer }}
 <script>
     $(".ui.rating").rating();
