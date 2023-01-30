@@ -124,4 +124,31 @@ class ItemsController {
         return RedirectView("/")
     }
 
+    @GetMapping("/newCat")
+    fun newCategorie():String{
+        return "newCategorieForm"
+    }
+
+    @PostMapping("/addCategorie")
+    fun addNewCategorie(
+        @ModelAttribute("categorieNom") nom:String,
+        @SessionAttribute("items") items:HashSet<Item>,
+        attrs:RedirectAttributes):RedirectView{
+
+        /*val item = Item()
+
+        if(nom.isNotEmpty()) {
+            item.nom = nom
+            item.evaluation = 0
+            showMessage(
+                items.add(item),
+                attrs,
+                "Ajout",
+                "$nom a été ajouté à la liste.",
+                "$nom existe déjà dans la liste."
+            )
+        }*/
+        return RedirectView("/")
+    }
+
 }

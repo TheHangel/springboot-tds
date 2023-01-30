@@ -1,0 +1,17 @@
+{{> header }}
+<body>
+
+<h1>Ajouter une catégorie</h1>
+
+<form action="/addCategorie" method="post">
+  Nom : <input type="text" name="categorieNom"><br>
+  <br>
+  {{#items}}
+    <ul>
+      <li><input type="checkbox" name="checkItem">{{nom}}</li>
+    </ul>
+  {{/items}}
+  <input type="submit" name="subNewCategorie">
+</form>
+</body>
+{{> footer }}
