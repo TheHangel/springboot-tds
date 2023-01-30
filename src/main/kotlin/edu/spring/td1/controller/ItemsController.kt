@@ -6,20 +6,20 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import org.springframework.web.servlet.view.RedirectView
+import java.util.*
 
 @Controller
-@RequestMapping("/")
 @SessionAttributes("items")
 class ItemsController {
-    @get:ModelAttribute("items")
+    @get:ModelAttribute("/items")
     val items: Set<Any>
         get() {
-            var elements=HashSet<Item>()
+            var elements= HashSet<Item>()
             elements.add(Item())
             return elements
         }
 
-    @PostMapping("items/addNew")
+    @PostMapping("/items/addNew")
     fun addNew(@RequestParam nom: String?, @RequestParam evaluation: Int?, @SessionAttribute("items") items: HashSet<Item?>, attrs : RedirectAttributes): RedirectView {
         val newItem = Item()
         if (nom != null) {
@@ -42,12 +42,17 @@ class ItemsController {
         return RedirectView("/items/")
     }
 
-    @RequestMapping("/")
-    fun indexAction(@SessionAttribute("items") message: UIMessage.Message): String {
-        return "items"
+    @GetMapping("/items/    new")
+    fun newAction():String{
+        return "newItemForm"
     }
 
-    @PostMapping("items/addTest")
+    @RequestMapping("/")
+    fun indexAction(@RequestAttribute("msg") message: UIMessage.Message): String {
+        return "index"
+    }
+
+    @PostMapping("/items/addTest")
     fun addNew(@RequestParam nom: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
         val e = Item()
         e.nom = "item"
@@ -56,24 +61,24 @@ class ItemsController {
         return RedirectView("/items/")
     }
 
-    @GetMapping("items/inc/{nom}")
+    @GetMapping("/items/inc/{nom}")
     fun incrementer(@RequestParam nom: String?, @PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
         for (e in items) {
             if (e != null) {
                 if (e.nom == nomItem ) {
-                    e.evaluation = ( e.evaluation + 1)
+                    e.evaluation?.plus(1)
                 }
             }
         }
         return RedirectView("/items/")
     }
 
-    @GetMapping("items/dec/{nom}")
+    @GetMapping("/items/dec/{nom}")
     fun decrementer(@RequestParam nom: String?, @PathVariable("nom") nomItem: String?, @SessionAttribute("items") items: HashSet<Item?>): RedirectView {
         for (e in items) {
             if (e != null) {
                 if (e.nom == nomItem ) {
-                    e.evaluation = ( e.evaluation - 1)
+                    e.evaluation?.minus(1)
                 }
             }
         }
