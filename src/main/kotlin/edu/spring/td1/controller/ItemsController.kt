@@ -35,16 +35,20 @@ class ItemsController {
         @ModelAttribute("nom") nom:String,
         @SessionAttribute("items") items:HashSet<Item>,
         attrs:RedirectAttributes):RedirectView{
+
         val item = Item()
-        item.nom = nom
-        item.evaluation = 0
-        showMessage(
-            items.add(item),
-            attrs,
-            "Ajout",
-            "$nom a été ajouté à la liste.",
-            "$nom est déjà dans la liste."
-        )
+
+        if(nom.isNotEmpty()) {
+            item.nom = nom
+            item.evaluation = 0
+            showMessage(
+                items.add(item),
+                attrs,
+                "Ajout",
+                "$nom a été ajouté à la liste.",
+                "$nom existe déjà dans la liste."
+            )
+        }
         return RedirectView("/")
     }
 
