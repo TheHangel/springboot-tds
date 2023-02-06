@@ -11,10 +11,12 @@ open class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Long ?= null
-    @Column(nullable = false)
-    lateinit var name: String
-    var domain: String? = null
-    var aliases: String? = null
+    open var id: Long ?= null
+    @Column(nullable = false, length = 60)
+    open lateinit var name: String
+    @Column(length = 45)
+    open var domain: String? = null
+    @Column(length = 45)
+    open var aliases: String? = null
 
 }

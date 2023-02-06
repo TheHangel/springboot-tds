@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 class IndexController {
 
     @RequestMapping(path=["", "index"]) //deux routes possibles, soit / , soit index
-    fun index(): String {
+    fun indexAction(): String {
         return "index"
     }
 
