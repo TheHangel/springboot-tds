@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/")
 class IndexController {
 
     @RequestMapping(path=["", "index"]) //deux routes possibles, soit / , soit index
