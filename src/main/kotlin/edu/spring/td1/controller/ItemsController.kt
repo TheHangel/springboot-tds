@@ -13,13 +13,6 @@ import kotlin.collections.HashSet
 @Controller
 @SessionAttributes("items", "categories")
 class ItemsController {
-    @get:ModelAttribute("items")
-    val items: Set<Any>
-        get() {
-            var elements= HashSet<Item>()
-            elements.add(Item().apply { nom = "objet par défaut"; evaluation = 0 })
-            return elements
-        }
 
     @get:ModelAttribute("categories")
     val categories: Set<Any>
@@ -27,6 +20,14 @@ class ItemsController {
             var categories= HashSet<Category>()
             categories = Category.genererListeParDefaut()
             return categories
+        }
+
+    @get:ModelAttribute("items")
+    val items: Set<Any>
+        get() {
+            var elements= HashSet<Item>()
+            elements.add(Item().apply { nom = "objet par défaut"; evaluation = 0 })
+            return elements
         }
 
     private fun showMessage(resp:Boolean, attrs: RedirectAttributes, title:String, success:String, error:String){

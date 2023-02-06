@@ -28,6 +28,15 @@ class Category {
             return categories
         }
 
+        fun getAllItems(categories: Set<Category>): Set<Item> {
+            val allItems = HashSet<Item>()
+            for (category in categories) {
+                allItems.addAll(category.items)
+            }
+            return allItems
+        }
+
+
     }
 
 }
