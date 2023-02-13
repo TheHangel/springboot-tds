@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody
 @RequestMapping("/organization/", "/organization")
 class OrganizationController {
 
+    @Autowired
+    lateinit var organizationRepository: OrganizationRepository
+
     @RequestMapping(path=["","index"])
     fun indexAction(model:ModelMap): String {
         val organizations = organizationRepository.findAll()
@@ -22,8 +25,6 @@ class OrganizationController {
         return "organization"
     }
 
-    @Autowired
-    lateinit var organizationRepository: OrganizationRepository
     @GetMapping("add/{name}")
     @ResponseBody
     fun createOrganization(@PathVariable name : String): String {

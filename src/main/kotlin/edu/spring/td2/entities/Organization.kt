@@ -7,22 +7,22 @@ open class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    open var id: Long ?= null
+    open var id: Int ?= null
     @Column(nullable = false, length = 60, unique = true)
     open lateinit var name: String
     @Column(length = 45)
-    open var domain: String? = null
+    open var domain: String ?= null
     @Column(length = 45)
-    open var aliases: String? = null
+    open var aliases: String ?= null
 
     @OneToMany(mappedBy = "organization", fetch = FetchType.EAGER, cascade = [CascadeType.ALL]) //mappedBy nom du membre de la classe User
-    open val users: MutableSet<User> ?= HashSet()
+    open val users = mutableSetOf<User>()
 
     @OneToMany(mappedBy = "organization") //nom du membre de la classe Group
-    open val groups: MutableSet<Group> ?= HashSet()
+    open val groups = mutableSetOf<Group>()
 
     fun addUser(user: User) {
-        if (users?.add(user) == true) {
+        if (users.add(user)) {
             user.organization = this
         }
     }

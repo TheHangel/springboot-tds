@@ -3,14 +3,13 @@ package edu.spring.td2.entities
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "users")
 open class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    open var id: Long? = null
+    open var id: Int ?= null
     @Column(length = 30)
-    open var firstName : String? = null
+    open var firstName : String ?= null
     @Column(length = 30)
     open var lastName : String? = null
 
@@ -27,6 +26,6 @@ open class User {
 
     @ManyToMany
     @JoinTable(name = "user_groups")
-    open val groups: MutableSet<Group> ?= HashSet()
+    open val groups = mutableSetOf<Group>()
 
 }
