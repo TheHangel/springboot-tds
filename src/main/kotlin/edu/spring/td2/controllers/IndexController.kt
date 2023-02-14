@@ -1,4 +1,4 @@
-package edu.spring.td2.controller
+package edu.spring.td2.controllers
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
