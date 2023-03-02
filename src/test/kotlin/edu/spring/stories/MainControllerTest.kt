@@ -3,6 +3,8 @@ package edu.spring.stories
 import edu.spring.stories.controllers.MainController
 import edu.spring.stories.entities.Story
 import edu.spring.stories.entities.Developer
+import edu.spring.stories.repositories.DeveloperRepository
+import edu.spring.stories.repositories.StoryRepository
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mockito.`when`

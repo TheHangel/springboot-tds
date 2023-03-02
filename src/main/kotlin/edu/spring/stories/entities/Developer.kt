@@ -7,7 +7,7 @@ open class Developer(firstname: String, lastname: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    open var id: Int? = null
+    open var id: Int = 0
 
     @Column(length = 45)
     open var firstname: String? = null
@@ -15,7 +15,7 @@ open class Developer(firstname: String, lastname: String) {
     @Column(length = 45)
     open var lastname: String? = null
 
-    @OneToMany(mappedBy = "developer")
+    @OneToMany(mappedBy = "developer", cascade = [CascadeType.PERSIST, CascadeType.MERGE])
     open val stories= mutableSetOf<Story>()
 
     fun addStory(story: Story) {

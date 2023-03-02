@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository
 @Repository
 interface StoryRepository: CrudRepository<Story, Int> {
 
-    fun findByNameAndDeveloperId(name: String, idDeveloper: Int): List<Story>
+    fun findByNameAndDeveloperId(name: String, idDeveloper: Int?): Story
 
-    fun findWithNoDeveloperAndAffect(): List<Story>
+    fun findByDeveloperIsNull(): List<Story>
 
 }

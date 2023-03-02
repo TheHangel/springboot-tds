@@ -2,6 +2,8 @@ package edu.spring.stories
 
 import edu.spring.stories.entities.Story
 import edu.spring.stories.entities.Developer
+import edu.spring.stories.repositories.DeveloperRepository
+import edu.spring.stories.repositories.StoryRepository
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

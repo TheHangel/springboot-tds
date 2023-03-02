@@ -12,13 +12,13 @@ open class Tag(color: String, label: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Int? = null
+    open var id: Int? = null
 
     @Column
-    lateinit var color: String
+    open lateinit var color: String
 
     @Column
-    lateinit var label: String
+    open lateinit var label: String
 
     @ManyToMany(mappedBy = "tags")
     open val stories = mutableSetOf<Story>()

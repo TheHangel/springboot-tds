@@ -7,10 +7,10 @@ open class Story(name: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    var id: Int? = null
+    open var id: Int? = null
 
     @Column(length = 45)
-    lateinit var name: String
+    open lateinit var name: String
 
     @ManyToOne
     @JoinColumn(name = "idDeveloper")
