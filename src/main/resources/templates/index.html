@@ -1,6 +1,69 @@
 {{> main/header}}
 <h1>Home</h1>
 
+<h2>Développeurs</h2>
 
+<p>Ajout rapide de developpeur</p>
+
+<form action="developer/add" method="post">
+    <input type="text" name="firstname" placeholder="firstname">
+    <input type="text" name="lastname" placeholder="lastname">
+    <button>+</button>
+</form>
+
+<table>
+    <thead>
+    <tr>
+        <th>Développeur</th>
+        <th>Stories</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {{#developers}}
+        <td>{{firstname}} {{lastname}}</td>
+        <td>
+            <ul>
+                {{#stories}}
+                <li>{{title}}</li>
+                {{/stories}}
+            </ul>
+        </td>
+        <td>
+            <a href="developer/{{id}}/edit">Edit</a>
+            <a href="developer/{{id}}/delete">Delete</a>
+        </td>
+        {{/developers}}
+        {{^developers}}
+        <td colspan="3">Pas de développeur</td>
+        {{/developers}}
+    </tr>
+    </tbody>
+</table>
+
+<h2>User stories à répartir</h2>
+<table>
+    <thead>
+    <tr>
+        <th>US</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        {{#stories}}
+        <td>{{name}}</td>
+        <td>
+            <a href="story/{{id}}/edit">Edit</a>
+            <a href="story/{{id}}/delete">Delete</a>
+        </td>
+        {{/stories}}
+        {{^stories}}
+        <td colspan="2">Pas de story</td>
+        {{/stories}}
+    </tr>
+    </tbody>
+</table>
 
 {{> main/footer}}
