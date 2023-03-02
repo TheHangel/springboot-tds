@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 class MainController {
 
     //Affiche la page principale
-    @RequestMapping("", "/", "index")
-    fun index(): String {
+    @RequestMapping(path = ["","index"])
+    fun indexAction():String{
         return "index"
     }
 
