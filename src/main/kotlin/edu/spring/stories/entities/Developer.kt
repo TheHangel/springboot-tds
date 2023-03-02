@@ -1,11 +1,6 @@
 package edu.spring.stories.entities
 
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 
 @Entity
 open class Developer(firstname: String, lastname: String) {
@@ -23,5 +18,18 @@ open class Developer(firstname: String, lastname: String) {
     @OneToMany(mappedBy = "developer")
     open val stories= mutableSetOf<Story>()
 
+    fun addStory(story: Story) {
+        stories.add(story)
+        story.developer = this
+    }
+
+    fun giveUpStory(story: Story) {
+        stories.remove(story)
+    }
+
+    @PreRemove
+    fun preRemove() {
+        stories.removeAll(stories)
+    }
 
 }
