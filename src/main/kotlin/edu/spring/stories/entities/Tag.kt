@@ -8,7 +8,7 @@ import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
 
 @Entity
-open class Tag {
+open class Tag(color: String, label: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

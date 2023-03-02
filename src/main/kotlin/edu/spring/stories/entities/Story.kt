@@ -3,7 +3,7 @@ package edu.spring.stories.entities
 import jakarta.persistence.*
 
 @Entity
-open class Story {
+open class Story(name: String) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
