@@ -20,25 +20,27 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
         {{#developers}}
-        <td>{{firstname}} {{lastname}}</td>
-        <!--<td>
-            <ul>
-                {{#stories}}
-                <li>{{title}}</li>
-                {{/stories}}
-            </ul>
-        </td>
-        <td>
-            <a href="developer/{{id}}/edit">Edit</a>
-            <a href="developer/{{id}}/delete">Delete</a>
-        </td>-->
+        <tr>
+            <td>{{firstname}} {{lastname}}</td>
+            <!--<td>
+                <ul>
+                    {{#stories}}
+                    <li>{{title}}</li>
+                    {{/stories}}
+                </ul>
+            </td>
+            <td>
+                <a href="developer/{{id}}/edit">Edit</a>
+                <a href="developer/{{id}}/delete">Delete</a>
+            </td>-->
+        </tr>
         {{/developers}}
         {{^developers}}
-        <td colspan="3">Pas de développeur</td>
+        <tr>
+            <td colspan="3">Pas de développeur</td>
+        </tr>
         {{/developers}}
-    </tr>
     </tbody>
 </table>
 
