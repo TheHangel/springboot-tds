@@ -87,9 +87,8 @@ class MainController {
     fun affectStoryAction(
         @PathVariable id:Int,
         @RequestParam developer_id:Int,
-        @RequestParam story_id:Int
     ): RedirectView{
-        val story = storyRepository.findById(story_id).get()
+        val story = storyRepository.findById(id).get()
         val developer = developerRepository.findById(developer_id).get()
         developer.addStory(story)
         developerRepository.save(developer)

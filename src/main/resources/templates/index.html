@@ -69,7 +69,6 @@
             <td>{{name}}</td>
             <td>
                 <form action="story/{{id}}/affect" method="post">
-                    <input type="hidden" name="story_id" id="story_id" value="{{id}}">
                     <select name="developer_id" id="developer_id">
                         {{#developers}}
                         <option value="{{id}}">{{firstname}} {{lastname}}</option>
