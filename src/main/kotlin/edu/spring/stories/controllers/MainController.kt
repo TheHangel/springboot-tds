@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.view.RedirectView
 
 @Controller
@@ -34,6 +33,7 @@ class MainController {
         return "index"
     }
 
+    //Ajoute le développeur posté
     @PostMapping("/developer/add")
     fun submitNewAction(
         @ModelAttribute dev:Developer
@@ -42,6 +42,8 @@ class MainController {
         return RedirectView("/")
     }
 
+    //Supprime le développeur dont l’id est
+    //passé dans le path
     @GetMapping("/developer/{id}/delete")
     fun deleteAction(
         @PathVariable id:Int
@@ -50,6 +52,7 @@ class MainController {
         return RedirectView("/")
     }
 
+    //Ajoute la story postée aux stories du dev
     @PostMapping("/developer/{id}/story")
     fun addStoryAction(
         @PathVariable id:Int,
@@ -64,6 +67,8 @@ class MainController {
         return RedirectView("/")
     }
 
+
+    //Retire la story des stories du dev
     @GetMapping("/story/{id}/giveup")
     fun giveUpAction(@PathVariable id: Int): RedirectView {
         val story = storyRepository.findById(id).get()
@@ -74,6 +79,7 @@ class MainController {
         return RedirectView("/")
     }
 
+    //Supprime la story
     @PostMapping("/story/{id}/remove")
     fun removeStoryAction(@PathVariable id: Int): RedirectView {
         val story = storyRepository.findById(id).orElseThrow { EntityNotFoundException() }
@@ -83,6 +89,7 @@ class MainController {
         return RedirectView("/")
     }
 
+    //Ajoute la story aux stories du dev
     @PostMapping("/story/{id}/affect")
     fun affectStoryAction(
         @PathVariable id:Int,
@@ -94,6 +101,5 @@ class MainController {
         developerRepository.save(developer)
         return RedirectView("/")
     }
-
 
 }
