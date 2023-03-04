@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.view.RedirectView
 
 @Controller
@@ -79,6 +80,19 @@ class MainController {
         val developer = story.developer
         developer?.giveUpStory(story)
         storyRepository.deleteById(id)
+        return RedirectView("/")
+    }
+
+    @PostMapping("/story/{id}/affect")
+    fun affectStoryAction(
+        @PathVariable id:Int,
+        @RequestParam developer_id:Int,
+        @RequestParam story_id:Int
+    ): RedirectView{
+        val story = storyRepository.findById(story_id).get()
+        val developer = developerRepository.findById(developer_id).get()
+        developer.addStory(story)
+        developerRepository.save(developer)
         return RedirectView("/")
     }
 

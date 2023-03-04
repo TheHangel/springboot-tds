@@ -69,9 +69,13 @@
             <td>{{name}}</td>
             <td>
                 <form action="story/{{id}}/affect" method="post">
-                    <select name="developer_affect" id="developer_affect">
+                    <input type="hidden" name="story_id" id="story_id" value="{{id}}">
+                    <select name="developer_id" id="developer_id">
                         {{#developers}}
                         <option value="{{id}}">{{firstname}} {{lastname}}</option>
+                        {{/developers}}
+                        {{^developers}}
+                            <option value="">Pas de développeur à affecter</option>
                         {{/developers}}
                     </select>
                     <button class="ui button">+</button>
