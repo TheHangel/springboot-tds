@@ -30,7 +30,7 @@
                     {{#stories}}
                     <div class="ui image label">
                         {{name}}
-                        <a href="story/{{id}}/giveup"><i class="delete icon"></i></a>
+                        <a href="story/{{id}}/giveup"><i class="remove icon"></i></a>
                     </div>
                     {{/stories}}
                 </ul>
@@ -53,6 +53,9 @@
 </table>
 
 <h2>User stories à répartir</h2>
+
+<p>{{nb_stories}}</p>
+
 <table>
     <thead>
     <tr>
@@ -61,18 +64,29 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
         {{#stories}}
-        <td>{{name}}</td>
-        <td>
-            <a href="story/{{id}}/edit">Edit</a>
-            <a href="story/{{id}}/delete">Delete</a>
-        </td>
+        <tr>
+            <td>{{name}}</td>
+            <td>
+                <form action="story/{{id}}/affect" method="post">
+                    <select name="developer_affect" id="developer_affect">
+                        {{#developers}}
+                        <option value="{{id}}">{{firstname}} {{lastname}}</option>
+                        {{/developers}}
+                    </select>
+                    <button class="ui button">+</button>
+                </form>
+                <form action="story/{{id}}/remove" method="post">
+                    <button class="red icon ui button">x</button>
+                </form>
+            </td>
+        </tr>
         {{/stories}}
         {{^stories}}
-        <td colspan="2">Pas de story</td>
+        <tr>
+            <td colspan="2">Pas de story</td>
+        </tr>
         {{/stories}}
-    </tr>
     </tbody>
 </table>
 

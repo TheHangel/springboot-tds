@@ -4,6 +4,7 @@ import edu.spring.stories.entities.Developer
 import edu.spring.stories.entities.Story
 import edu.spring.stories.repositories.DeveloperRepository
 import edu.spring.stories.repositories.StoryRepository
+import jakarta.persistence.EntityNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -24,8 +25,11 @@ class MainController {
     @RequestMapping(path = ["","index"])
     fun indexAction(model: ModelMap):String{
         val devs = developerRepository.findAll()
+        val stories = storyRepository.findByDeveloperIsNull()
         model.addAttribute("developers", devs)
         model.addAttribute("nb_devs", devs.count())
+        model.addAttribute("stories", stories)
+        model.addAttribute("nb_stories", stories.count())
         return "index"
     }
 
@@ -60,11 +64,23 @@ class MainController {
     }
 
     @GetMapping("/story/{id}/giveup")
-    fun giveUpAction(
-        @PathVariable id:Int
-    ):RedirectView{
+    fun giveUpAction(@PathVariable id: Int): RedirectView {
+        val story = storyRepository.findById(id).get()
+        val developer = story.developer
+        developer?.giveUpStory(story)
+        story.developer = null
+        storyRepository.save(story)
+        return RedirectView("/")
+    }
+
+    @PostMapping("/story/{id}/remove")
+    fun removeStoryAction(@PathVariable id: Int): RedirectView {
+        val story = storyRepository.findById(id).orElseThrow { EntityNotFoundException() }
+        val developer = story.developer
+        developer?.giveUpStory(story)
         storyRepository.deleteById(id)
         return RedirectView("/")
     }
+
 
 }
