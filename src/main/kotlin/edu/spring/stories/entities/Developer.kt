@@ -29,7 +29,8 @@ open class Developer(firstname: String, lastname: String) {
 
     @PreRemove
     fun preRemove() {
-        stories.removeAll(stories)
+        stories.forEach { it.developer = null }
+        stories.clear()
     }
 
 }

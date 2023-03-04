@@ -14,7 +14,7 @@ open class Story(name: String) {
 
     @ManyToOne
     @JoinColumn(name = "idDeveloper")
-    open lateinit var developer : Developer
+    open var developer : Developer? = null
 
     @ManyToMany(mappedBy = "stories")
     open val tags = mutableSetOf<Tag>()

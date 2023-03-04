@@ -37,8 +37,6 @@ class MainController {
     fun deleteAction(
         @PathVariable id:Int
     ):RedirectView{
-        //val dev = developerRepository.findById(id).get()
-        //dev.preRemove()
         developerRepository.deleteById(id)
         return RedirectView("/")
     }
