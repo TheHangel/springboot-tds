@@ -1,6 +1,7 @@
 package edu.spring.stories.controllers
 
 import edu.spring.stories.entities.Developer
+import edu.spring.stories.entities.Story
 import edu.spring.stories.repositories.DeveloperRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -18,16 +19,11 @@ class MainController {
     //Affiche la page principale
     @RequestMapping(path = ["","index"])
     fun indexAction(model: ModelMap):String{
-        model.addAttribute("developers", developerRepository.findAll())
+        val devs = developerRepository.findAll()
+        model.addAttribute("developers", devs)
+        model.addAttribute("nb_devs", devs.count())
         return "index"
     }
-
-    /*@PostMapping("/developer/add")
-    fun addDeveloper(@RequestParam firstname: String, @RequestParam lastname: String): RedirectView {
-        val developer = Developer(firstname, lastname)
-        developerRepository.save(developer)
-        return RedirectView("/")
-    }*/
 
     @PostMapping("/developer/add")
     fun submitNewAction(
@@ -37,10 +33,38 @@ class MainController {
         return RedirectView("/")
     }
 
-    /*@PostMapping("/developer/add")
-    fun addDeveloper(@ModelAttribute developer: Developer): RedirectView {
-        developerRepository.save(developer)
+    @GetMapping("/developer/{id}/delete")
+    fun deleteAction(
+        @PathVariable id:Int
+    ):RedirectView{
+        //val dev = developerRepository.findById(id).get()
+        //dev.preRemove()
+        developerRepository.deleteById(id)
         return RedirectView("/")
-    }*/
+    }
+
+    @PostMapping("/developer/{id}/story")
+    fun addStoryAction(
+        @PathVariable id:Int,
+        @RequestParam storyname:String
+    ):RedirectView{
+        val dev = developerRepository.findById(id).get()
+        val story = Story(storyname)
+        story.name = storyname
+        story.developer = dev
+        dev.addStory(story)
+        developerRepository.save(dev)
+        return RedirectView("/")
+    }
+
+    @PostMapping("/story/{id}/giveup")
+    fun giveUpAction(
+        @PathVariable id:Int
+    ):RedirectView{
+        val dev = developerRepository.findById(id).get()
+        dev.stories.removeAll(dev.stories)
+        developerRepository.save(dev)
+        return RedirectView("/")
+    }
 
 }

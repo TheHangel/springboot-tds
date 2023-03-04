@@ -15,7 +15,7 @@ open class Developer(firstname: String, lastname: String) {
     @Column(length = 45)
     open var lastname: String? = null
 
-    @OneToMany(mappedBy = "developer", cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+    @OneToMany(mappedBy = "developer", cascade = [CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL])
     open val stories= mutableSetOf<Story>()
 
     fun addStory(story: Story) {

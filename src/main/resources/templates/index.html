@@ -3,6 +3,8 @@
 
 <h2>Développeurs</h2>
 
+<p>{{nb_devs}}</p>
+
 <p>Ajout rapide de developpeur</p>
 
 <form action="developer/add" method="post">
@@ -23,17 +25,20 @@
         {{#developers}}
         <tr>
             <td>{{firstname}} {{lastname}}</td>
-            <!--<td>
+            <td>
                 <ul>
                     {{#stories}}
-                    <li>{{title}}</li>
+                    <li>{{name}}</li>
                     {{/stories}}
                 </ul>
             </td>
             <td>
-                <a href="developer/{{id}}/edit">Edit</a>
-                <a href="developer/{{id}}/delete">Delete</a>
-            </td>-->
+                <form action="developer/{{id}}/story" method="post">
+                    <input type="text" id="storyname" name="storyname" placeholder="story name">
+                    <input type="submit" value="Ajouter US et Affecter">
+                    <a href="developer/{{id}}/delete">Quitter le projet</a>
+                </form>
+            </td>
         </tr>
         {{/developers}}
         {{^developers}}
