@@ -16,7 +16,7 @@ open class Developer(firstname: String, lastname: String) {
     open var lastname: String? = null
 
     @OneToMany(mappedBy = "developer", cascade = [CascadeType.PERSIST, CascadeType.MERGE, CascadeType.ALL])
-    open val stories= mutableSetOf<Story>()
+    open val stories = mutableSetOf<Story>()
 
     fun addStory(story: Story) {
         stories.add(story)

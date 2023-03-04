@@ -28,7 +28,10 @@
             <td>
                 <ul>
                     {{#stories}}
-                    <li>{{name}}</li>
+                    <div class="ui image label">
+                        {{name}}
+                        <a href="story/{{id}}/giveup"><i class="delete icon"></i></a>
+                    </div>
                     {{/stories}}
                 </ul>
             </td>

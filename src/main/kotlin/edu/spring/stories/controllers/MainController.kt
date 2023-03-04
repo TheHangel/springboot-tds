@@ -3,6 +3,7 @@ package edu.spring.stories.controllers
 import edu.spring.stories.entities.Developer
 import edu.spring.stories.entities.Story
 import edu.spring.stories.repositories.DeveloperRepository
+import edu.spring.stories.repositories.StoryRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -15,6 +16,9 @@ class MainController {
 
     @Autowired
     lateinit var developerRepository: DeveloperRepository
+
+    @Autowired
+    lateinit var storyRepository: StoryRepository
 
     //Affiche la page principale
     @RequestMapping(path = ["","index"])
@@ -55,13 +59,11 @@ class MainController {
         return RedirectView("/")
     }
 
-    @PostMapping("/story/{id}/giveup")
+    @GetMapping("/story/{id}/giveup")
     fun giveUpAction(
         @PathVariable id:Int
     ):RedirectView{
-        val dev = developerRepository.findById(id).get()
-        dev.stories.removeAll(dev.stories)
-        developerRepository.save(dev)
+        storyRepository.deleteById(id)
         return RedirectView("/")
     }
 
