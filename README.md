@@ -1,9 +1,19 @@
-# stories-td1
-Devs &amp; stories for TD1
+# springboot-tds
 
-## Consignes :
-- Instructions dans [README.pdf](https://github.com/s4-dut-info/stories-td1/blob/main/README.pdf)
-- **Respecter impérativement les nommages indiqués, sinon, les tests ne passeront pas.**
-- Commiter régulièrement.
-- **Mettre votre repository en private (Dans le bas des settings)**
+Ceci est le repository de la ressource R4.10 Complément Web.
 
+# Installation
+
+```
+git clone https://github.com/TheHangel/springboot-tds.git
+```
+
+```
+cd springboot-tds 
+```
+
+```
+git checkout <nom du td> 
+```
+
+Le projet Maven tourne avec Java 17 (JDK)
