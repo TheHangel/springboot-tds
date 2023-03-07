@@ -1,152 +1,137 @@
-{{> main/header}}
-
-<style>
-    form, div {
-        display: inline-block;
-    }
-    button {
-        white-space: nowrap;
-    }
-</style>
-
-<h1>Home</h1>
-
-<h2>Développeurs
-    <div class="ui olive left pointing label">
-        <div class="count-developers">
-            {{nb_devs}}
-        </div>
-    </div>
-</h2>
-
-<div class="ui visible message">
-    <div class="ui green visible message">
-        <i class="info icon"></i>
-        Ajout rapide de developpeur
-    </div>
-
-    <form action="developer/add" method="post">
-        <div class="ui input">
-            <input type="text" name="firstname" placeholder="firstname">
-            <input type="text" name="lastname" placeholder="lastname">
-        </div>
-        <button class="ui button">+</button>
-    </form>
+{{> main/header }}
+<h2 class="ui header">Propriétaires <span class="ui blue left pointing label count-masters">{{masters.size}}</span></h2>
+<div class="ui attached info message">
+    <i class="icon info"></i>
+    Ajout rapide de propriétaire
 </div>
-
+    <div class="ui attached segment">
+        <form class="ui form" method="post" action="/master/add">
+            <div class="inline fields">
+                <div class="field">
+                    <div class="ui action input">
+                        <input type="text" name="firstname" placeholder="firstname" required>
+                        <input type="text" name="lastname" placeholder="lastname" required>
+                        <button class="ui icon button">
+                            <i class="plus icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 <table class="ui table">
     <thead>
     <tr>
-        <th>Développeur</th>
-        <th>Stories</th>
+        <th>Propriétaire</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-        {{#developers}}
-        <tr>
-            <td>{{firstname}} {{lastname}}</td>
-            <td>
-                <ul>
-                    {{#stories}}
-                    <div class="dev-story">
-                        <div class="ui image label">
-                            {{name}}
-                            <div class="giveup-story">
-                                <a href="story/{{id}}/giveup"><i class="remove icon"></i></a>
+{{#masters}}
+    <tr>
+        <td><a href="/master/{{id}}">{{firstname}} {{lastname}}</a> <span class="ui label count-master-dogs"><i class="ui dog icon"></i> {{dogs.size}}</span></td>
+        <td>
+            <form method="post" action="/master/{{id}}/dog" class="ui form">
+                <div class="inline fields">
+                    <div class="field">
+                        <div class="ui action input">
+                            <input type="text" name="name" placeholder="dog name" required>
+                            <div class="ui buttons">
+                                <button class="ui negative button" name="dog-action" value="give-up">Abandonner</button>
+                                <div class="or" data-text="ou"></div>
+                                <button class="ui positive button" name="dog-action" value="add">Acquérir</button>
                             </div>
                         </div>
                     </div>
-                    {{/stories}}
-                </ul>
-            </td>
-            <td>
-                <form action="developer/{{id}}/story" method="post">
-                    <div class="ui input">
-                        <input type="text" id="storyname" name="storyname" placeholder="story name">
-                    </div>
-                    <button class="ui green button" type="submit" value="add">Ajouter US et Affecter</button>
-                </form>
-                    <div class="delete-developer">
-                        <a class="ui black button" href="developer/{{id}}/delete">
-                            <i class="sign out alternate icon"></i>
-                            Quitter le projet
-                        </a>
-                    </div>
-            </td>
-        </tr>
-        {{/developers}}
-        {{^developers}}
-        <tr>
-            <td colspan="3">
-                <div class="ui brown icon message">
-                    <i class="exclamation circle icon"></i>
-                        <div class="content">
-                        <div class="header">
-                            Pas de développeur
-                        </div>
-                        <p>Il n'y a pas de développeurs dans la base de données.</p>
+                    <div class="field">
+                        <a href="/master/{{id}}/delete" class="ui black button delete-master"><i class="ui skull crossbones icon"></i> Paix à son âme</a>
                     </div>
                 </div>
+            </form>
+        </td>
+    </tr>
+{{/masters}}
+    {{^hasMasters}}
+        <tr>
+            <td colspan="2">
+                <div class="ui icon warning message">
+                    <i class="ui warning circle icon"></i>
+                    <div class="content">
+                        <div class="header">
+                            Pas de maître
+                        </div>
+                        <p>Il n'y a pas de maître dans la base de données.</p>
+                    </div>
             </td>
         </tr>
-        {{/developers}}
+    {{/hasMasters}}
     </tbody>
 </table>
-
-<h2>User stories à répartir
-    <div class="ui red left pointing label">
-        <div class="count-stories">
-            {{nb_stories}}
-        </div>
-    </div>
-</h2>
-
+<h2 class="ui header">Chiens à l'adoption <span class="ui red left pointing label count-dogs">{{dogs.size}}</span></h2>
 <table class="ui table">
     <thead>
     <tr>
-        <th>US</th>
+        <th>
+            Chien
+        </th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-        {{#stories}}
+    {{#dogs}}
         <tr>
-            <td>{{name}}</td>
             <td>
-                <form action="story/{{id}}/affect" method="post">
-                    <select class="ui selection dropdown" name="developer_id" id="developer_id">
-                        {{#developers}}
-                        <option value="{{id}}">{{firstname}} {{lastname}}</option>
-                        {{/developers}}
-                        {{^developers}}
-                            <option value="">Pas de développeur à affecter</option>
-                        {{/developers}}
-                    </select>
-                    <button value="affect" name="story-action" class="ui button">+</button>
-                </form>
-                <form action="story/{{id}}/remove" method="post">
-                    <button value="remove" name="story-action" class="red icon ui button">x</button>
+                {{name}}
+            </td>
+            <td>
+                <form method="post" action="/dog/{{id}}/action" class="ui form">
+                    <div class="inline fields">
+                        {{#hasMasters}}
+                        <div class="field">
+                            <div class="ui action input">
+                                <select name="master" class="ui selection dropdown">
+                                    {{#masters}}
+                                        <option value="{{id}}">{{firstname}} {{lastname}}</option>
+                                    {{/masters}}
+                                </select>
+                                <button class="ui icon button" name="dog-action" value="adopt">
+                                    <i class="plus icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {{/hasMasters}}
+                        {{^hasMasters}}
+                            <div class="field">
+                                Pas d'adoptant
+                            </div>
+                        {{/hasMasters}}
+                        <div class="field">
+                            <div class="ui action input">
+                                <button class="ui negative icon button" name="dog-action" value="remove">
+                                    <i class="ui sign out alternate icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </td>
         </tr>
-        {{/stories}}
-        {{^stories}}
+    {{/dogs}}
+    {{^dogs}}
         <tr>
             <td colspan="2">
-                <div class="ui green icon message">
-                    <i class="info circle icon"></i>
+                <div class="ui icon success message">
+                    <i class="ui info circle icon"></i>
                     <div class="content">
                         <div class="header">
-                            Aucune story
+                            Pas de chien
                         </div>
-                        <p>Il n'y a pas d'US à attribuer dans la base de données.</p>
+                        <p>Il n'y a pas de chien à l'adoption dans la base de données.</p>
                     </div>
                 </div>
             </td>
         </tr>
-        {{/stories}}
+    {{/dogs}}
     </tbody>
 </table>
-
-{{> main/footer}}
+{{> main/footer }}
