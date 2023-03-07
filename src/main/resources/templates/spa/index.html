@@ -1,0 +1,18 @@
+{{>/main/header}}
+<h1>{!message!}</h1>
+<h2>Maîtres</h2>
+<ul>
+    <li v-for="master in masters">
+        {!master.firstname!} {!master.lastname!}
+    </li>
+</ul>
+<h2>Chiens à l'adoption</h2>
+<ul>
+    <li v-for="dog in dogs">
+        {!dog.name!}
+    </li>
+</ul>
+<input v-model="message">
+{{>/main/footer}}
+
+{{{vue}}}
