@@ -1,18 +1,27 @@
-{{>/main/header}}
-<h1>{!message!}</h1>
-<h2>Maîtres</h2>
+{{> main/header }}
+<h2 class="ui header">Propriétaires <span class="ui blue left pointing label count-masters">{!masters.length!}</span></h2>
+<div class="ui attached info message">
+    <i class="icon info"></i>
+    Ajout rapide de propriétaire
+</div>
+<div class="ui attached segment">
+    <div class="ui form">
+        <div class="inline fields">
+            <div class="field">
+                <div class="ui action input">
+                    <input type="text" name="firstname" placeholder="firstname" required>
+                    <input type="text" name="lastname" placeholder="lastname" required>
+                    <button @click="addMaster()" class="ui icon button">
+                        <i class="plus icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <ul>
-    <li v-for="master in masters">
-        {!master.firstname!} {!master.lastname!}
-    </li>
-</ul>
-<h2>Chiens à l'adoption</h2>
-<ul>
-    <li v-for="dog in dogs">
-        {!dog.name!}
-    </li>
-</ul>
-<input v-model="message">
-{{>/main/footer}}
+    <li v-for="master : ${masters}">
 
-{{{vue}}}
+    </li>
+</ul>
+{{> main/footer }}
