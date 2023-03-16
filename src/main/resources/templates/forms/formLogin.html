@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{{> /main/header }}
+<form method="post" action="./login">
+    <div class="ui input">
+        <input type="text" name="username" placeholder="E-mail address or username">
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <button class="ui success button" type="submit">Login</button>
+</form>
+{{> /main/footer }}
