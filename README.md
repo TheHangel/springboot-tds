@@ -1,19 +1,7 @@
-# springboot-tds
+# btp-td1
+BTP for TD1
 
-Ceci est le repository de la ressource R4.10 Complément Web.
-
-# Installation
-
-```
-git clone https://github.com/TheHangel/springboot-tds.git
-```
-
-```
-cd springboot-tds 
-```
-
-```
-git checkout <nom du td> 
-```
-
-Le projet Maven tourne avec Java 17 (JDK)
+## Consignes :
+- Instructions dans [README.pdf](https://github.com/s4-dut-info/btp-td1/blob/main/README.pdf)
+- Commiter régulièrement.
+- **Mettre votre repository en private (Dans le bas des settings)**

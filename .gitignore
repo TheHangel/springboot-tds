@@ -11,6 +11,8 @@
 /clionSDK
 /android-studio/sdk
 out/
+target/
+data/
 /tmp
 /intellij
 workspace.xml
