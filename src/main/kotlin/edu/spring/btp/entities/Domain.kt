@@ -35,4 +35,12 @@ open class Domain() {
     @Column
     open var complaintsCount: Int = 0
 
+    fun getComplaintsCount(): Int {
+        return complaints.size
+    }
+
+    fun hasChildren(): Boolean {
+        return children.size > 0
+    }
+
 }
