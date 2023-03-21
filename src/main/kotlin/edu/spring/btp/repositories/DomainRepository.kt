@@ -13,4 +13,10 @@ interface DomainRepository:JpaRepository<Domain, Int> {
 
     fun findByParentName(name:String):List<Domain>
 
+    fun findByName(name:String):Domain
+
+    fun findByParentNull():List<Domain>
+
+    fun findByParentId(id:Int):List<Domain>
+
 }
