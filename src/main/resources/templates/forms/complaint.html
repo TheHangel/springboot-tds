@@ -1,0 +1,17 @@
+{{> main/header }}
+
+{{#domain}}
+{{name}}
+
+<form action="" method="post">
+  <input type="hidden" name="domainId" value="{{id}}">
+  Titre
+  <input type="text" name="title">
+  Descritpion
+  <input type="textarea" name="description">
+  <input type="submit" value="Déposer une plainte">
+</form>
+
+{{/domain}}
+
+{{> main/footer }}

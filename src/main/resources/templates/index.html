@@ -1,3 +1,26 @@
 {{> main/header }}
 
+    {{#domain}}
+        <br>
+        {{name}}
+        <br>
+        Domaine(s)
+        {{children.size}}
+        {{#children}}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{name}}
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {{providers.size}} providers
+            {{description}}
+            {{complaintsCount}} plaintes
+            {{complaints.size}}
+            {{#hasChildren}}
+<button>Ouvrir</button>
+            {{/hasChildren}}
+
+        {{/children}}
+    {{/domain}}
+<br>
+
 {{> main/footer }}
