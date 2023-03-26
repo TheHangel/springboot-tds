@@ -1,26 +1,39 @@
 {{> main/header }}
 
-    {{#domain}}
-        <br>
-        {{name}}
-        <br>
-        Domaine(s)
-        {{children.size}}
-        {{#children}}
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{name}}x
-            <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            {{providers.size}} providers
-            {{description}}
-            {{complaintsCount}} plaintes
-            {{complaints.size}}
-            {{#hasChildren}}
-<button>Ouvrir</button>
-            {{/hasChildren}}
+{{#domain}}
+<p><span class="ui big blue text">{{name}}</span> </p>
 
-        {{/children}}
-    {{/domain}}
-<br>
+<p><span class="ui big white text">Domaine(s)</span> </p>
+<div class="ui label">
+    {{children.size}}
+</div>
+<div class="ui four cards">
+    {{#children}}
+    <div class="card">
+        <div class="content">
+            <div class="header">{{name}}</div>
+            <div class="description">
+                {{providers.size}} providers
+            </div>
+            {{description}}
+            <br>
+            <i class="purple bug icon"></i>
+            <a href="/complaints/{{name}}">{{complaints.size}} plaintes</a>
+            <div class="ui label">
+                {{complaints.size}}
+            </div>
+
+        </div>
+        {{#hasChildren}}
+        <a class="ui button" href="domain/{{name}}">
+            <i class="door open icon"></i>
+            Ouvrir
+        </a>
+        {{/hasChildren}}
+    </div>
+    {{/children}}
+</div>
+
+{{/domain}}
 
 {{> main/footer }}
