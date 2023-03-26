@@ -1,8 +1,30 @@
 {{> main/header }}
 
+{{#domain}}
+  <h1><span class="ui big blue text">Plaintes de {{name}}</span> </h1>
+  </style>
+  <div class="ui equal width center aligned padded grid">
+      <div class="row">
+            <a href="{{name}}/new" class="ui button" style="margin-bottom: 20px">Déposer une nouvelle plainte</a>
+      </div>
+  </div>
+{{/domain}}
+
 {{#complaints}}
-  {{title}}<br>
-  {{description}}
+<div class="ui equal width center aligned padded grid">
+    <div class="row">
+        <div class="ui card">
+            <div class="content">
+                <div class="header"><div class="ui equal width center aligned padded grid">{{title}}</div></div>
+                    <div class="description">
+                        <div class="ui equal width center aligned padded grid" style="background-color: #969696;color: #FFFFFF;border-radius: 10%">
+                            {{description}}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{/complaints}}
 
 {{> main/footer }}

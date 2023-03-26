@@ -50,6 +50,7 @@ class IndexController {
     fun complaints(@PathVariable domain:String, model:Model):String{
         if(user.id!=0 && user.role=="USER") {
             model.addAttribute("complaints", complaintRepository.findByDomainName(domain))
+            model.addAttribute("domain", domainRepository.findByName(domain))
             return "complaints"
         }
         return "redirect:/login"
