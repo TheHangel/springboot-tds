@@ -78,10 +78,13 @@ class IndexController {
 
     @RequestMapping("complaints/{domain}/new")
     fun newComplaint(@PathVariable domain:String, model:Model):String{
-        model.addAttribute("domain", domainRepository.findByName(domain))
-        model.addAttribute("providers", providerRepository.findAll())
-        model.addAttribute("userId", this.user.id)
-        return "forms/complaint"
+        if(user.id!=0 && user.role=="USER") {
+            model.addAttribute("domain", domainRepository.findByName(domain))
+            model.addAttribute("providers", providerRepository.findAll())
+            model.addAttribute("userId", this.user.id)
+            return "forms/complaint"
+        }
+        return "redirect:/login"
     }
 
     @RequestMapping("login")
