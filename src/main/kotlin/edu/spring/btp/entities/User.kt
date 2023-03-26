@@ -5,7 +5,9 @@ import jakarta.persistence.*
 @Entity
 open class User() {
 
-    constructor(username:String):this(){
+    constructor(id: Int, username:String, role:String):this(){
+        this.id=id
+        this.role=role
         this.username=username
     }
 
@@ -35,6 +37,10 @@ open class User() {
     fun preRemove() {
         complaints.forEach { it.user = null }
         claims.forEach { it.claimants.remove(this) }
+    }
+
+    override fun toString(): String {
+        return "User(id=$id, username='$username', password='$password', email='$email', role='$role')"
     }
 
 }

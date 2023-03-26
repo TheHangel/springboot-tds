@@ -5,10 +5,17 @@
 
 <form action="" method="post">
   <input type="hidden" name="domainId" value="{{id}}">
+  <input type="hidden" name="userId" value="{{userId}}">
   Titre
   <input type="text" name="title">
   Descritpion
-  <input type="textarea" name="description">
+  <textarea name="description" id="description" cols="30" rows="10"></textarea>
+  <select name="provider" id="provider">
+    Vos providers
+    {{#providers}}
+      <option value="{{id}}">{{rs}}</option>
+    {{/providers}}
+  </select>
   <input type="submit" value="Déposer une plainte">
 </form>
 
