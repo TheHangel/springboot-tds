@@ -10,4 +10,11 @@ interface UserRepository: JpaRepository<User, Int> {
 
     fun findByEmailOrUsername(email:String, username:String):User
 
+    fun findByEmailAndPassword(email:String, password:String):User
+
+    fun findByUsernameAndPassword(username:String, password:String):User
+
+    fun findByEmail(email:String):User
+
+    fun findByUsername(username:String):User
 }
