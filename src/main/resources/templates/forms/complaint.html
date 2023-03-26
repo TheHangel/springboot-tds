@@ -1,24 +1,43 @@
 {{> main/header }}
 
 {{#domain}}
-{{name}}
+<h1 class="ui header blue">Déposer une plainte pour {{name}}</h1>
 
-<form action="" method="post">
+<div class="main ui container">
+<form class="ui form" action="" method="post">
   <input type="hidden" name="domainId" value="{{id}}">
   <input type="hidden" name="userId" value="{{userId}}">
-  Titre
-  <input type="text" name="title">
-  Descritpion
-  <textarea name="description" id="description" cols="30" rows="10"></textarea>
+  <div class="field">
+    <label class="ui text inverted">
+      <div class="ui inverted segment">
+          Titre
+      </div>
+    </label>
+    <input type="text" name="title" placeholder="Insérez un titre">
+  </div>
+  <div class="field">
+    <label>
+      <div class="ui inverted segment">
+          Descritpion
+        </div>
+    </label>
+  <textarea name="description" id="description" cols="30" rows="10" placeholder="Décrivez votre problème"></textarea>
+    </div>
+  <div class="field">
+    <label>
+      <div class="ui inverted segment">
+        Sélectionnez votre provider
+      </div>
+    </label>
   <select name="provider" id="provider">
-    Vos providers
     {{#providers}}
       <option value="{{id}}">{{rs}}</option>
     {{/providers}}
   </select>
-  <input type="submit" value="Déposer une plainte">
+    </div>
+  <input class="ui button" type="submit" value="Déposer une plainte">
 </form>
-
+</div>
 {{/domain}}
 
 {{> main/footer }}
