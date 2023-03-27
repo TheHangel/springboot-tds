@@ -3,9 +3,11 @@
 {{#domain}}
 <h1><span class="ui big blue text">{{name}}</span> </h1>
 
-<h2><span class="ui big white text">Domaine(s)</span> </h2>
-<div class="ui label">
-    {{children.size}}
+<div style="margin-bottom: 10px">
+    <span class="ui big inverted text">Domaine(s)</span>
+    <div class="ui label">
+        {{children.size}}
+    </div>
 </div>
 <div class="ui four cards">
     {{#children}}
@@ -22,7 +24,6 @@
             <div class="ui label">
                 {{complaints.size}}
             </div>
-
         </div>
         {{#hasChildren}}
         <a class="ui button" href="domain/{{name}}">
