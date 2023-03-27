@@ -1,15 +1,34 @@
 {{> main/header }}
+<div class="ui raised segments">
+  <div class="ui black inverted top attached segment">
+    <img class="ui middle aligned tiny image" src="/images/ladybug.png">
+    <span class="ui big text">Création de compte - BTP</span>
+  </div>
+  <div class="ui black inverted attached segment">
+    <form class="ui form">
+      <div class="field">
+        Nom d'utilisateur
+        <input type="text" name="username" placeholder="Nom d'utilisateur">
+      </div>
+      <div class="field">
+        Adresse email
+        <input type="text" name="email" placeholder="E-mail address">
+      </div>
+      <div class="field">
+        Adresse email
+        <input type="password" name="password" placeholder="Password">
+      </div>
+      <div class="field">
+        Adresse email
+        <input type="password" name="passwordConfirmation" placeholder="Password confiramtion">
+      </div>
 
-<form action="" method="post">
-  Nom d'utilisateur
-  <input type="text" name="username"><br>
-  Adresse mail
-  <input type="text" name="email"><br>
-  Créez un mot de passe
-  <input type="password" name="password"><br>
-  Confirmez votre mot de passe
-  <input type="password" name="passwordConfirmation"><br>
-  <input type="submit" value="Créer un compte">
-</form>
+      <button class="fluid ui purple basic button" type="submit">Créer le compte</button>
+    </form>
+  </div>
+</div>
 
+<div class="ui black inverted segment">
+  <p>Déjà un compte ?<a href="/login"> Te connecter</a></p>
+</div>
 {{> main/footer }}

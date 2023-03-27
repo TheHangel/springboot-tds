@@ -1,13 +1,28 @@
 {{> main/header }}
-
-<form action="" method="post">
-  Nom d'utilisateur ou adresse email
-  <input type="text" name="UsernameOrEmail">
-  Mot de passe
-  <input type="password" name="password">
-  <input type="submit" value="Se connecter">
-</form>
-
-Pas de compte ? <a href="signup">ya plus qu'à...</a>
-
+<div class="ui raised segments">
+  <div class="ui black inverted top attached segment">
+    <img class="ui middle aligned tiny image" src="/images/ladybug.png">
+    <span class="ui big text">Connexion - BTP</span>
+  </div>
+  <div class="ui black inverted attached segment">
+    <form class="ui form">
+      <div class="field">
+        <div class="ui left icon input">
+          <input type="text" name="UsernameOrEmail" placeholder="Nom d'utilisateur ou E-mail">
+          <i class="user icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <input type="password" name="password" placeholder="Password">
+          <i class="lock icon"></i>
+        </div>
+      </div>
+      <button class="fluid ui button" type="submit">Se connecter</button>
+    </form>
+  </div>
+</div>
+<div class="ui black inverted segment">
+  <p>Pas de compte ?<a href="/signup"> ya plus qu'à ...</a></p>
+</div>
 {{> main/footer }}
